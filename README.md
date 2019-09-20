@@ -17,8 +17,8 @@ Example using a local backend:
     ---
     version: 5
     defaults:
-    datadir: hiera
-    data_hash: yaml_data
+      datadir: hiera
+      data_hash: yaml_data
 
     hierarchy:
     - name: common
@@ -35,8 +35,8 @@ Example using a remote S3 backend:
     ---
     version: 5
     defaults:
-    datadir: hiera
-    data_hash: yaml_data
+      datadir: hiera
+      data_hash: yaml_data
 
     hierarchy:
     - name: common

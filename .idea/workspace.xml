@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8666da6-4e4d-469a-b460-18645907c673" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/terraform_backend.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/terraform_backend_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testdata/terraform.tfstate" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testdata/terraform_backend.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testdata/terraform_backend_errors.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +106,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Added .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added .gitignore" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
