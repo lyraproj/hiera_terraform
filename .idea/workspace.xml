@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8666da6-4e4d-469a-b460-18645907c673" name="Default Changelist" comment="" />
+    <list default="true" id="c8666da6-4e4d-469a-b460-18645907c673" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/terraform_backend.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/terraform_backend_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testdata/terraform.tfstate" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testdata/terraform_backend.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testdata/terraform_backend_errors.yaml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +26,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1R1XugB7d9Ew7OoL7eeV0huzZEf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="GO_FMT" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
@@ -86,6 +95,21 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
