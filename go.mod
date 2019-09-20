@@ -13,7 +13,6 @@ require (
 
 replace (
 	github.com/coreos/etcd => github.com/coreos/etcd v3.3.13+incompatible
-	github.com/lyraproj/hiera => ../hiera
-	github.com/lyraproj/pcore => ../pcore
+	github.com/lyraproj/hiera => github.com/thallgren/hiera v0.0.0-20190920152706-3eecfa8da3f1
 	github.com/ugorji/go => github.com/ugorji/go v0.0.0-20181204163529-d75b2dcb6bc8
 )
