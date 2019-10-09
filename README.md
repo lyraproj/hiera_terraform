@@ -6,18 +6,16 @@ Any backend supported by Terraform can be queried.
 ## Installation
 Build the plugin from the root directory of this module:
 ```
-go build -buildmode=plugin -o terraform_backend.so
+go build -o terraform_backend
 ```
 Then make the plugin available to Hiera. See
 [Extending Hiera](https://github.com/lyraproj/hiera#Extending-Hiera) for info on how to do that.
 
 #### A Note about debugging
-When debugging from an IDE like JetBrains goland, the hiera binary will be built using `-gcflags 'all=N -l'` which
-results in a slightly different binary signature. As a consequence, the loading of plugins will fail with a message
-similar to "plugin was built with a different version of package X" unless the plugin is rebuilt using the same flags,
-e.g.
+When debugging remotely from an IDE like JetBrains goland, use `-gcflags 'all=N -l'` to ensure that all symbols are present in the
+final binary.
 ```
-go build -buildmode=plugin -o terraform_backend.so -gcflags 'all=-N -l'
+go build -o terraform_backend -gcflags 'all=-N -l'
 ```
 
 ## Examples
