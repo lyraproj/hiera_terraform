@@ -8,11 +8,12 @@ import (
 
 	backendInit "github.com/hashicorp/terraform/backend/init"
 	"github.com/hashicorp/terraform/configs/hcl2shim"
+	"github.com/lyraproj/dgo/dgo"
+	"github.com/lyraproj/dgo/vf"
+	"github.com/lyraproj/dgocty"
 	"github.com/lyraproj/hierasdk/hiera"
 	"github.com/lyraproj/hierasdk/plugin"
 	"github.com/lyraproj/hierasdk/register"
-	"github.com/lyraproj/hierasdk/vf"
-	"github.com/zclconf/go-cty/cty"
 )
 
 func main() {
@@ -24,7 +25,7 @@ var lookupLock sync.Mutex
 
 // TerraformBackendData is a data hash function that returns values from a Terraform backend.
 // The config can be any valid Terraform backend configuration.
-func TerraformBackendData(ctx hiera.ProviderContext) vf.Data {
+func TerraformBackendData(ctx hiera.ProviderContext) dgo.Value {
 	// Hide Terraform's debug messages temporarily. A global mutex is required when doing
 	// since only one Go routine can hide and restore at any given time.
 	lookupLock.Lock()
@@ -47,10 +48,10 @@ func TerraformBackendData(ctx hiera.ProviderContext) vf.Data {
 	if configMap == nil {
 		panic(fmt.Errorf(`missing required provider option 'config'`))
 	}
-	if _, ok := configMap.(vf.Map); !ok {
+	if _, ok := configMap.(dgo.Map); !ok {
 		panic(fmt.Errorf("%q must be a map", "config"))
 	}
-	config := convertDataToCty(configMap)
+	config := dgocty.ToCty(configMap, false)
 
 	backendInit.Init(nil)
 	f := backendInit.Backend(backend)
@@ -82,39 +83,9 @@ func TerraformBackendData(ctx hiera.ProviderContext) vf.Data {
 	}
 	remoteState := state.State()
 	mod := remoteState.RootModule()
-	output := make(vf.Map)
+	output := vf.MutableMap(nil)
 	for k, os := range mod.OutputValues {
-		output[k] = ctx.ToData(hcl2shim.ConfigValueFromHCL2(os.Value))
+		output.Put(k, ctx.ToData(hcl2shim.ConfigValueFromHCL2(os.Value)))
 	}
 	return output
-}
-
-// convert vf.Data to cty.Value recursively
-func convertDataToCty(v vf.Data) cty.Value {
-	var cv cty.Value
-	switch v := v.(type) {
-	case vf.String:
-		cv = cty.StringVal(string(v))
-	case vf.Int:
-		cv = cty.NumberIntVal(int64(v))
-	case vf.Float:
-		cv = cty.NumberFloatVal(float64(v))
-	case vf.Bool:
-		cv = cty.BoolVal(bool(v))
-	case vf.Slice:
-		cvs := make([]cty.Value, len(v))
-		for i := range v {
-			cvs[i] = convertDataToCty(v[i])
-		}
-		cv = cty.ListVal(cvs)
-	case vf.Map:
-		cvs := make(map[string]cty.Value, len(v))
-		for k, v := range v {
-			cvs[k] = convertDataToCty(v)
-		}
-		cv = cty.ObjectVal(cvs)
-	default:
-		cv = cty.NilVal
-	}
-	return cv
 }
