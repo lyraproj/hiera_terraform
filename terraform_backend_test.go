@@ -21,14 +21,16 @@ func TestLookup_TerraformBackend(t *testing.T) {
 		vf.Map("testobject", vf.Map("key1", "value1", "key2", "value2"), "test", "value"))
 }
 
+func TestLookup_TerraformBackendEmpty(t *testing.T) {
+	testTerraformPlugin(t, url.Values{`options`: {`{"backend": "local", "config": {"path": "terraform_empty.tfstate"}}`}},
+		http.StatusOK,
+		vf.Map())
+}
+
 func TestLookup_TerraformBackendErrors(t *testing.T) {
 	testTerraformPlugin(t, url.Values{`options`: {`{"backend": "something", "config": {"path": "terraform.tfstate"}}`}},
 		http.StatusInternalServerError,
 		`unknown backend type "something"`)
-
-	testTerraformPlugin(t, url.Values{`options`: {`{"backend": "local", "config": {"path": "something"}}`}},
-		http.StatusInternalServerError,
-		`RootModule called on nil State`)
 
 	testTerraformPlugin(t, url.Values{`options`: {`{"backend": "local", "config": {"something": "else"}}`}},
 		http.StatusInternalServerError,
