@@ -25,7 +25,7 @@ var lookupLock sync.Mutex
 
 // TerraformBackendData is a data hash function that returns values from a Terraform backend.
 // The config can be any valid Terraform backend configuration.
-func TerraformBackendData(ctx hiera.ProviderContext) dgo.Value {
+func TerraformBackendData(ctx hiera.ProviderContext) dgo.Map {
 	// Hide Terraform's debug messages temporarily. A global mutex is required when doing
 	// since only one Go routine can hide and restore at any given time.
 	lookupLock.Lock()
