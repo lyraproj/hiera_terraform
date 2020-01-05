@@ -85,8 +85,17 @@ func TerraformBackendData(ctx hiera.ProviderContext) dgo.Map {
 	output := vf.MutableMap(nil)
 	if !remoteState.Empty() {
 		mod := remoteState.RootModule()
-		for k, os := range mod.OutputValues {
-			output.Put(k, ctx.ToData(hcl2shim.ConfigValueFromHCL2(os.Value)))
+		rootKey, ok := ctx.StringOption(`root_key`)
+		if ok {
+			nested := vf.MutableMap(nil)
+			for k, os := range mod.OutputValues {
+				nested.Put(k, ctx.ToData(hcl2shim.ConfigValueFromHCL2(os.Value)))
+			}
+			output.Put(rootKey, nested)
+		} else {
+			for k, os := range mod.OutputValues {
+				output.Put(k, ctx.ToData(hcl2shim.ConfigValueFromHCL2(os.Value)))
+			}
 		}
 	}
 	return output
