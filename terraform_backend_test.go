@@ -27,6 +27,12 @@ func TestLookup_TerraformBackendEmpty(t *testing.T) {
 		vf.Map())
 }
 
+func TestLookup_TerraformBackendRootKey(t *testing.T) {
+	testTerraformPlugin(t, url.Values{`options`: {`{"backend": "local", "root_key": "nested", "config": {"path": "terraform.tfstate"}}`}},
+		http.StatusOK,
+		vf.Map("nested", vf.Map("testobject", vf.Map("key1", "value1", "key2", "value2"), "test", "value")))
+}
+
 func TestLookup_TerraformBackendErrors(t *testing.T) {
 	testTerraformPlugin(t, url.Values{`options`: {`{"backend": "something", "config": {"path": "terraform.tfstate"}}`}},
 		http.StatusInternalServerError,
