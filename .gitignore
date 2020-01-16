@@ -5,6 +5,8 @@
 .idea/**/dictionaries
 .idea/**/shelf
 .idea/**/contentModel.xml
+.idea/codeStyles/
+.idea/inspectionProfiles/
 
 # test generates plugin directory
 plugin/
