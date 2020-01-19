@@ -3,7 +3,7 @@ module github.com/lyraproj/hiera_terraform
 go 1.13
 
 require (
-	github.com/hashicorp/terraform v0.12.18
+	github.com/hashicorp/terraform v0.12.19
 	github.com/lyraproj/dgo v0.3.2
 	github.com/lyraproj/dgocty v0.3.0
 	github.com/lyraproj/hierasdk v0.3.0
