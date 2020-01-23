@@ -8,6 +8,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/lyraproj/dgo/streamer"
+
 	"github.com/lyraproj/dgo/dgo"
 	require "github.com/lyraproj/dgo/dgo_test"
 	"github.com/lyraproj/dgo/vf"
@@ -85,10 +87,7 @@ func testTerraformPlugin(t *testing.T, query url.Values, expectedStatus int, exp
 		if expectedType != actualType {
 			t.Errorf("handler returned unexpected content path: got %q want %q", actualType, expectedType)
 		}
-		actualBody, err = vf.UnmarshalJSON(rr.Body.Bytes())
-		if err != nil {
-			t.Fatal(err)
-		}
+		actualBody = streamer.UnmarshalJSON(rr.Body.Bytes(), nil)
 	} else {
 		actualBody = vf.String(strings.TrimSpace(rr.Body.String()))
 	}
