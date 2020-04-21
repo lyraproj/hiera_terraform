@@ -4,9 +4,9 @@ go 1.13
 
 require (
 	github.com/hashicorp/terraform v0.12.24
-	github.com/lyraproj/dgo v0.4.3
-	github.com/lyraproj/dgocty v0.4.3
-	github.com/lyraproj/hierasdk v0.4.3
+	github.com/lyraproj/dgo v0.4.4
+	github.com/lyraproj/dgocty v0.4.4
+	github.com/lyraproj/hierasdk v0.4.4
 )
 
 replace (
