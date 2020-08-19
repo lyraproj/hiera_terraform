@@ -23,6 +23,12 @@ func TestLookup_TerraformBackend(t *testing.T) {
 		vf.Map("testobject", vf.Map("key1", "value1", "key2", "value2"), "test", "value"))
 }
 
+func TestLookup_TerraformBackend13(t *testing.T) {
+	testTerraformPlugin(t, url.Values{`options`: {`{"backend": "local", "config": {"path": "terraform_13.tfstate"}}`}},
+		http.StatusOK,
+		vf.Map("testobject", vf.Map("key1", "value1", "key2", "value2"), "test", "value"))
+}
+
 func TestLookup_TerraformBackendEmpty(t *testing.T) {
 	testTerraformPlugin(t, url.Values{`options`: {`{"backend": "local", "config": {"path": "terraform_empty.tfstate"}}`}},
 		http.StatusOK,
